@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EverleafApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"  %>
+    <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">Everleaf</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <% if logged_in? %>
+      <div class="sidenav">
+        <li><%= link_to "My profile", user_path(current_user.id) %></li>
+        <li><%= link_to "All Tasks", tasks_path %></li>
+        <li><%= link_to "Labels", labels_path %></li>
+        <% if current_user.admin? %>
+        <li><%= link_to "Admin", admin_users_path %></li>
+        <% end %>
+        <li><%= button_to "Logout", session_path(current_user.id), :method=>:delete, :class=>:destroy, class: "but" %></li>
+        <ul id="logout_sidebar_button" class="nav nav-sidebar">
+          <li><%= image_tag("logo.png", class: "logo") %></li>
+        </ul>
+      </div>
+    <% end %>
+
+
+
+        <% flash.each do |key, value| %>
+        <div class="alert alert-danger" role="alert">
+          <%= content_tag(:div, value, class: "#{key}") %>
+        </div>
+        <% end %>
+
+
+  <div class="main">
+    <%= yield %>
+
+  </div>
+  <footer class="page-footer font-small special-color-white pt-4 fixed-bottom">
+    <div class="footer-copyright text-center py-3"><h2>© 2020 Chipo Jaya</h2>
+    </div>
+  </footer>
+  </body>
+</html>

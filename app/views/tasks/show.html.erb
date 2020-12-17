@@ -1,0 +1,43 @@
+<div >
+  <div class="card" style="width: 110rem">
+    <div class="pclass">
+
+
+    <p>
+      <strong>Title:</strong>
+      <%= @task.title %>
+    </p>
+
+    <p>
+      <strong>Content:</strong>
+      <%= @task.content %>
+    </p>
+
+    <p>
+      <strong>Duedate:</strong>
+      <%= @task.duedate %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @task.status %>
+    </p>
+
+    <p>
+      <strong>Priority:</strong>
+      <%= @task.priority %>
+    </p>
+
+    <p>
+      <strong>Labels:</strong>
+      <% @task.labels.each do |label| %>
+        [<%= label.name %>]
+      <% end %>
+    </p>
+    <p>
+    <%= link_to 'Edit', edit_task_path(@task) %>  |
+    <%= link_to 'Back', tasks_path %>
+    </p>
+  </div>
+</div>
+</div>

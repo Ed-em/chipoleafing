@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-4">
+
+  </div>
+  <div class="mt-5">
+
+    <h1>Everleaf Login</h1>
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |form|%>
+      <p><%= form.email_field :email, placeholder: 'email', class: "field" %></p>
+      <br>
+      <p><%= form.password_field :password, placeholder: 'password', class: "field" %></p>
+      <br>
+      <div class="row">
+        <div class="col-xs-12 form-btn">
+        <%= form.submit "Login" %>
+        </div>
+      </div>
+    <% end %>
+    <hr>
+    <h2>New to Everleaf？<%= link_to 'Create account', new_user_path, class: 'btn btn-warning' %></h2>
+  </div>
+</div>
